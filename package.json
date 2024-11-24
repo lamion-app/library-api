@@ -1,0 +1,24 @@
+{
+  "name": "@lamion-libs/api",
+  "version": "0.0.1",
+  "author": "ImpossibleAccuracy",
+  "scripts": {
+    "build": "tsc",
+    "build-bundle": "browserify ./src/index.ts -p [ tsify --noImplicitAny ] --standalone Lamion | uglifyjs -c -o ./dist/bundle/index.js"
+  },
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamion-app/library-js.git"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.1",
+    "tsify": "^5.0.4",
+    "typescript": "^5.7.2"
+  }
+}
