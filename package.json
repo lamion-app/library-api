@@ -17,8 +17,12 @@
     "url": "git+https://github.com/lamion-app/library-js.git"
   },
   "devDependencies": {
+    "@types/browser-fingerprint": "^0.1.2",
     "browserify": "^17.0.1",
     "tsify": "^5.0.4",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "browser-fingerprint": "^0.1.0"
   }
 }
