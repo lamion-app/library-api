@@ -1,10 +1,18 @@
-export interface AccessProperties {
-  key: string;
+import { DataStorage } from "../repository/store";
+import { DeviceInfo } from "./meta";
+
+export interface Properties {
+  accessKey: string;
   autoFlush: boolean;
-  clientId?: () => Promise<string | undefined>;
-  identifyKey?: () => Promise<string>;
+  createStore: () => DataStorage;
+  meta: {
+    clientId?: () => Promise<string | undefined>;
+    identifyKey?: () => Promise<string>;
+    device: () => DeviceInfo;
+  };
 }
 
-export const DefaultProperties: Partial<AccessProperties> = {
-  autoFlush: false,
-};
+export interface Context {
+  dataStore: DataStorage;
+  device: DeviceInfo;
+}

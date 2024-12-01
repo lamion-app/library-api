@@ -1,21 +1,12 @@
 import { ErrorLogItem, LogItem } from "../model/log";
-
-interface UserData {
-  clientId?: string;
-  identifyKey?: string;
-}
-
-interface DeviceData {
-  name: string;
-  platform: string;
-}
+import { UserData, DeviceInfo } from "../model/meta";
 
 export function makeLog(data: {
   accessKey: string;
   events: Array<LogItem>;
   errors: Array<ErrorLogItem>;
   user: UserData;
-  device: DeviceData;
+  device: DeviceInfo;
 }) {
   fetch("TODO", {
     method: "POST",

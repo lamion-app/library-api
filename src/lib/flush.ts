@@ -1,14 +1,12 @@
 import { makeLog } from "../func/network";
-import { AccessProperties } from "../model/properties";
-import { dataStorage } from "../repository/store";
-import { getDeviceName, getDevicePlatform } from "../func/device";
+import { Context, Properties } from "../model/properties";
 
-export const flush = async (properties: AccessProperties) => {
-  const clientId = properties.clientId
-    ? await properties.clientId()
+export const flush = async (properties: Properties, context: Context) => {
+  const clientId = properties.meta.clientId
+    ? await properties.meta.clientId()
     : undefined;
-  const identifyKey = properties.identifyKey
-    ? await properties.identifyKey()
+  const identifyKey = properties.meta.identifyKey
+    ? await properties.meta.identifyKey()
     : undefined;
 
   if (!clientId && !identifyKey) {
@@ -16,18 +14,15 @@ export const flush = async (properties: AccessProperties) => {
   }
 
   makeLog({
-    accessKey: properties.key,
-    events: dataStorage.events(),
-    errors: dataStorage.errors(),
+    accessKey: properties.accessKey,
+    events: context.dataStore.events(),
+    errors: context.dataStore.errors(),
     user: {
       clientId: clientId,
       identifyKey: identifyKey,
     },
-    device: {
-      name: getDeviceName(),
-      platform: getDevicePlatform(),
-    },
+    device: context.device,
   });
 
-  dataStorage.clear();
+  context.dataStore.clear();
 };

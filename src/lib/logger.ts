@@ -1,29 +1,29 @@
 import { LogItem } from "../model/log";
-import { AccessProperties } from "../model/properties";
-import { dataStorage } from "../repository/store";
+import { Context, Properties } from "../model/properties";
 import { getTimestamp } from "../utils/date";
-import { flush } from "../lib/flush";
 
-export const Logger = (
-  properties: AccessProperties,
-  name: string,
-  feature?: string
+export const loggerFactory = (
+  properties: Properties,
+  context: Context,
+  flush: () => void
 ) => {
-  const logEvent = () => {
-    const item: LogItem = {
-      name: name,
-      feature: feature,
-      createdAt: getTimestamp(),
+  return (name: string, feature?: string) => {
+    const log = () => {
+      const item: LogItem = {
+        name: name,
+        feature: feature,
+        createdAt: getTimestamp(),
+      };
+
+      context.dataStore.addEvent(item);
+
+      if (properties.autoFlush) {
+        flush();
+      }
     };
 
-    dataStorage.addEvent(item);
-
-    if (properties.autoFlush) {
-      flush(properties);
-    }
-  };
-
-  return {
-    log: logEvent,
+    return {
+      log: log,
+    };
   };
 };
