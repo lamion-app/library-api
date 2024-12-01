@@ -17,8 +17,6 @@
     "url": "git+https://github.com/lamion-app/library-api.git"
   },
   "devDependencies": {
-    "browserify": "^17.0.1",
-    "tsify": "^5.0.4",
     "typescript": "^5.7.2"
   }
 }
