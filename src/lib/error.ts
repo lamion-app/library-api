@@ -10,7 +10,7 @@ export const recordError = (
   name?: string
 ) => {
   const item: ErrorLogItem = {
-    text: `${e.message}\n${e.stack}`,
+    text: e.stack ?? e.message ?? "error without message",
     name: name,
     createdAt: getTimestamp(),
   };

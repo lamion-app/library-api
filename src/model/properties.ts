@@ -1,15 +1,10 @@
-import { getIdentifyKey } from "../func/identify";
-
 export interface AccessProperties {
   key: string;
   autoFlush: boolean;
-  clientId: () => Promise<string | undefined>;
-  identifyKey: () => Promise<string | undefined>;
+  clientId?: () => Promise<string | undefined>;
+  identifyKey?: () => Promise<string>;
 }
 
 export const DefaultProperties: Partial<AccessProperties> = {
   autoFlush: false,
-  identifyKey: async () => {
-    return getIdentifyKey();
-  },
 };

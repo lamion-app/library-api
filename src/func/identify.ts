@@ -1,4 +1,4 @@
-import fingerprint from "browser-fingerprint";
+/* import fingerprint from "browser-fingerprint";
 import { getCookie, setCookie } from "../utils/cookie";
 import { storePrefix } from "../defaults/constants";
 
@@ -16,3 +16,4 @@ export function getIdentifyKey(): string {
 
   return newKey;
 }
+ */
