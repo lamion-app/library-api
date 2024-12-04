@@ -1,5 +1,5 @@
 import { Properties, Context } from "../model/properties";
-import { loggerFactory } from "../lib/logger";
+import { logLambdaFactory, loggerFactory } from "../lib/logger";
 import { errorRecorderFactory } from "../lib/error";
 import { flush } from "../lib/flush";
 
@@ -20,6 +20,7 @@ export const useLamion = (props: Properties) => {
   const flushImpl = flush.bind(undefined, props, context);
 
   return {
+    logEvent: logLambdaFactory(props, context, flushImpl),
     useLogger: loggerFactory(props, context, flushImpl),
     recordError: errorRecorderFactory(props, context, flushImpl),
     flush: flushImpl,

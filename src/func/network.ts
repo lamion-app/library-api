@@ -1,6 +1,9 @@
 import { ErrorLogItem, LogItem } from "../model/log";
 import { UserData, DeviceInfo } from "../model/meta";
 
+const baseUrl = "http://150.241.92.62:9000"; // TODO
+const logEndpoint = baseUrl + "/v1/event/log";
+
 export function makeLog(data: {
   accessKey: string;
   events: Array<LogItem>;
@@ -8,10 +11,13 @@ export function makeLog(data: {
   user: UserData;
   device: DeviceInfo;
 }) {
-  fetch("TODO", {
+  if (data.events.length == 0 && data.errors.length == 0) return;
+
+  fetch(logEndpoint, {
     method: "POST",
     headers: {
       Authorization: data.accessKey,
+      "content-type": "application/json",
     },
     body: JSON.stringify({
       device: {
