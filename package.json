@@ -1,6 +1,6 @@
 {
   "name": "@lamion-libs/api",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "ImpossibleAccuracy",
   "scripts": {
     "build": "tsc"

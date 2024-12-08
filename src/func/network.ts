@@ -1,7 +1,7 @@
 import { ErrorLogItem, LogItem } from "../model/log";
 import { UserData, DeviceInfo } from "../model/meta";
 
-const baseUrl = "http://150.241.92.62:9000"; // TODO
+const baseUrl = "https://lamion-api-fjk0.onrender.com"; // TODO
 const logEndpoint = baseUrl + "/v1/event/log";
 
 export function makeLog(data: {
