@@ -1,3 +1,3 @@
 # Lamion API
 
-NPM package for [Lamion](https://lamionapp.netlify.app/) events logger.
+NPM package for [Lamion](https://lamion.netlify.app/) events logger.
